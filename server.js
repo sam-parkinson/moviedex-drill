@@ -30,15 +30,21 @@ function handleGetMovies(req, res) {
   let results = MOVIEDEX;
 
   if (genre) {
-    // filter
+    results = results.filter(movie => 
+      movie.genre.toLowerCase().includes(genre.toLowerCase())
+    );
   }
 
   if (country) {
-    // filter
+    results = results.filter(movie => 
+      movie.country.toLowerCase().includes(country.toLowerCase())
+    );
   }
 
   if (avg_vote) {
-    // filter
+    results = results.filter(movie =>
+      Number(movie.avg_vote) >= Number(avg_vote)
+    );
   }
 
   res.json(results)
